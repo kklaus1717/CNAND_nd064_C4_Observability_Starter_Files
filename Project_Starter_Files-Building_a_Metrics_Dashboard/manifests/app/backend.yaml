@@ -15,7 +15,7 @@ spec:
       containers:
       - name: backend
         # We advise you to build, push and use your own image, instead of using instructor's image.      
-        image: kklaus1616/backend:v1
+        image: kklaus1616/backend:latest
         ports:
         - containerPort: 8081
 ---
