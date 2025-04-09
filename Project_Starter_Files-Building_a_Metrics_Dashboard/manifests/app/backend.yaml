@@ -23,6 +23,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: backend-service
+  labels:
+    app: backend   # <--- Das ist wichtig!
 spec:
   selector:
     app: backend
