@@ -15,7 +15,7 @@ spec:
       containers:
       - env:
         - name: JAEGER_AGENT_HOST
-          value: jaeger
+          value: hotrod-agent.observability.svc.cluster.local
         - name: JAEGER_AGENT_PORT
           value: "6831"
         name: backend
