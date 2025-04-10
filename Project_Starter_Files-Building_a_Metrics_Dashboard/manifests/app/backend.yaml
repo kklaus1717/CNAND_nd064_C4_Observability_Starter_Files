@@ -2,8 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend-app
-  annotations:
-    "sidecar.jaegertracing.io/inject": "true"
 spec:
   replicas: 1
   selector:
@@ -13,17 +11,18 @@ spec:
     metadata:
       labels:
         app: backend
-      annotations:
-        sidecar.istio.io/inject: "true"    
     spec:
       containers:
       - name: backend
-        env:
-        - name: OTEL_EXPORTER_OTLP_ENDPOINT
-          value: "http://jaeger-collector.observability.svc.cluster.local:4318"
+        # We advise you to build, push and use your own image, instead of using instructor's image.      
         image: kklaus1616/backend:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: JAEGER_AGENT_HOST
+          value: jaeger
+        - name: JAEGER_AGENT_PORT
+          value: '6831'
 ---
 apiVersion: v1
 kind: Service
